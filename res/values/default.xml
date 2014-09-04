@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <bool name="gesture_wakeup">true</bool>
+    <bool name="gesture_double_click">true</bool>
+    <bool name="gesture_c">true</bool>
+    <bool name="gesture_e">true</bool>
+    <bool name="gesture_W">true</bool>
+    <bool name="gesture_O">true</bool>
+    <bool name="gesture_M">true</bool>
+    <bool name="gesture_Z">true</bool>
+    <bool name="gesture_V">true</bool>
+    <bool name="gesture_S">true</bool>
+    <bool name="gesture_up">true</bool>
+    <bool name="gesture_down">true</bool>
+    <bool name="gesture_left">true</bool>
+    <bool name="gesture_right">true</bool>
+
+</resources>

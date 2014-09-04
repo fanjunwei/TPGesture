@@ -14,7 +14,8 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		ActionBar actionBar = getActionBar();
 
-		actionBar.setDisplayShowHomeEnabled(true);
+		actionBar.setDisplayUseLogoEnabled(false);
+		actionBar.setDisplayShowHomeEnabled(false);
 		getFragmentManager().beginTransaction()
 				.replace(android.R.id.content, new Settings()).commit();
 	}

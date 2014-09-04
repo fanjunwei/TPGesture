@@ -1,9 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">触控唤醒</string>
+    <string name="app_name">触控唤醒设置</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
     <string name="gesture_wakeup">触控唤醒</string>
+    <string name="gestures">手势</string>
+    <string name="gesture_double_click">手势：双击</string>
+    <string name="gesture_c">手势：C</string>
+    <string name="gesture_e">手势：e</string>
+    <string name="gesture_W">手势：W</string>
+    <string name="gesture_O">手势：O</string>
+    <string name="gesture_M">手势：M</string>
+    <string name="gesture_Z">手势：Z</string>
+    <string name="gesture_V">手势：V</string>
+    <string name="gesture_S">手势：S</string>
+    <string name="gesture_up">手势：上划</string>
+    <string name="gesture_down">手势：下划</string>
+    <string name="gesture_left">手势：左划</string>
+    <string name="gesture_right">手势：右划</string>
+
 
 </resources>
