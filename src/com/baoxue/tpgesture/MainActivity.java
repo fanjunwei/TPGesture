@@ -3,7 +3,9 @@ package com.baoxue.tpgesture;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.os.Bundle;
+import android.preference.Preference;
 import android.preference.PreferenceFragment;
+import android.preference.SwitchPreference;
 
 public class MainActivity extends Activity {
 
@@ -14,7 +16,7 @@ public class MainActivity extends Activity {
 
 		actionBar.setDisplayShowHomeEnabled(true);
 		getFragmentManager().beginTransaction()
-				.replace(android.R.id.content, new GestureSwitch()).commit();
+				.replace(android.R.id.content, new Settings()).commit();
 	}
 	
 //	@Override
@@ -23,15 +25,4 @@ public class MainActivity extends Activity {
 //	    inflater.inflate(R.menu.main_activity, menu);
 //	    return true;
 //	}
-
-	public static class GestureSwitch extends PreferenceFragment {
-
-		@Override
-		public void onCreate(Bundle savedInstanceState) {
-			// TODO Auto-generated method stub
-			super.onCreate(savedInstanceState);
-			addPreferencesFromResource(R.xml.setting);
-		}
-
-	}
 }

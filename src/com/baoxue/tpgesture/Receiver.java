@@ -1,16 +1,22 @@
 package com.baoxue.tpgesture;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 import android.content.BroadcastReceiver;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.ServiceConnection;
-import android.os.IBinder;
 import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
 import android.os.RemoteException;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.widget.Toast;
 
 public class Receiver extends BroadcastReceiver {
 
@@ -18,33 +24,15 @@ public class Receiver extends BroadcastReceiver {
 	static boolean registeredScreenAction = false;
 	Context mContext;
 
-	static IGestureService mService;
-
-	private ServiceConnection serviceConnection = new ServiceConnection() {
-		@Override
-		public void onServiceConnected(ComponentName name, IBinder service) {
-			mService = IGestureService.Stub.asInterface(service);
-		}
-
-		@Override
-		public void onServiceDisconnected(ComponentName name) {
-			mService = null;
-		}
-	};
-
 	void lockUnlockScreen(boolean isToUnlcok) {
-		if (mService == null) {
-			Log.d("tttt","bind service");
-			mContext.getApplicationContext().bindService(new Intent(mContext.getApplicationContext(), GestureService.class),
-					serviceConnection, Context.BIND_AUTO_CREATE);
-		}
-		if (mService != null) {
-			Log.d("tttt","run service method");
+
+		if (GestureApp.getService() != null) {
+			Log.d("tttt", "run service method");
 			try {
 				if (isToUnlcok) {
-					mService.unlockScreen();
+					GestureApp.getService().unlockScreen();
 				} else {
-					mService.lockScreen();
+					GestureApp.getService().lockScreen();
 				}
 			} catch (RemoteException ex) {
 				ex.printStackTrace();
@@ -58,6 +46,32 @@ public class Receiver extends BroadcastReceiver {
 	}
 
 	public Receiver() {
+	}
+
+	private void readGesture() {
+		File dev = new File("/sys/gsl_touchscreen/gesture");
+		if (dev.exists()) {
+			try {
+				BufferedReader reader = new BufferedReader(
+						new InputStreamReader(new FileInputStream(dev)));
+				reader.readLine();
+				reader.readLine();
+				String line = reader.readLine();
+				String[] args = line.split(":");
+				if (args.length == 2) {
+					Log.d("tttt", args[1]);
+					Toast.makeText(mContext.getApplicationContext(), args[1],
+							Toast.LENGTH_LONG).show();
+				}
+
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
 
 	@Override
@@ -77,6 +91,7 @@ public class Receiver extends BroadcastReceiver {
 				mWakelock.acquire();
 				mWakelock.release();
 				lockUnlockScreen(true);
+				readGesture();
 
 			}
 		}
