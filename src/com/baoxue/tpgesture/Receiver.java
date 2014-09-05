@@ -1,19 +1,11 @@
 package com.baoxue.tpgesture;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStreamReader;
-
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.RemoteException;
 import android.util.Log;
 import android.view.KeyEvent;
-import android.widget.Toast;
 
 public class Receiver extends BroadcastReceiver {
 

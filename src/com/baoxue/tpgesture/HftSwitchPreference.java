@@ -20,8 +20,16 @@ public class HftSwitchPreference extends SwitchPreference {
 
 	@Override
 	protected void onClick() {
-
+//		OnPreferenceClickListener listener= getOnPreferenceClickListener();
+//		if(listener!=null)
+//		{
+//			listener.onPreferenceClick(this);
+//		}
 	}
+
+
+	
+	
 	
 	
 

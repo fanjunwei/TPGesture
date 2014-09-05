@@ -3,9 +3,6 @@ package com.baoxue.tpgesture;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.os.Bundle;
-import android.preference.Preference;
-import android.preference.PreferenceFragment;
-import android.preference.SwitchPreference;
 
 public class MainActivity extends Activity {
 

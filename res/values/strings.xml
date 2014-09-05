@@ -2,8 +2,6 @@
 <resources>
 
     <string name="app_name">触控唤醒设置</string>
-    <string name="action_settings">Settings</string>
-    <string name="hello_world">Hello world!</string>
     <string name="gesture_wakeup">触控唤醒</string>
     <string name="gestures">手势</string>
     <string name="gesture_double_click">手势：双击</string>
@@ -19,6 +17,22 @@
     <string name="gesture_down">手势：下划</string>
     <string name="gesture_left">手势：左划</string>
     <string name="gesture_right">手势：右划</string>
-
+	<string name="mode">模式</string>
+    <string-array name="mode_entries">
+        <item>唤醒</item>
+        <item>解锁</item>
+        <item>播放/暂停音乐</item>
+        <item>上一首</item>
+        <item>下一首</item>
+        <item>打开应用</item>
+    </string-array>
+    <string-array name="mode_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
 
 </resources>
