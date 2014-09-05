@@ -25,13 +25,10 @@
     <string-array name="mode_entries">
         <item>唤醒</item>
         <item>解锁</item>
-        <!--
-             <item>播放/暂停音乐</item>
+        <item>播放/暂停音乐</item>
         <item>上一首</item>
         <item>下一首</item>
-        -->
         <item>打开应用</item>
     </string-array>
-  
 
 </resources>

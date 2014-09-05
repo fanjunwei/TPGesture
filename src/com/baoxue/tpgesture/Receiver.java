@@ -39,10 +39,11 @@ public class Receiver extends BroadcastReceiver {
 	@Override
 	public void onReceive(Context context, Intent intent) {
 		mContext = context;
-		KeyEvent keyEvent = (KeyEvent) intent
-				.getParcelableExtra(Intent.EXTRA_KEY_EVENT);
-		Log.d("tttt", "onReceive");
+
 		if (intent.getAction() == Intent.ACTION_MEDIA_BUTTON) {
+			KeyEvent keyEvent = (KeyEvent) intent
+					.getParcelableExtra(Intent.EXTRA_KEY_EVENT);
+			Log.d("tttt", "onReceive action=" + keyEvent.getAction());
 			if (KeyEvent.KEYCODE_BUTTON_1 == keyEvent.getKeyCode()
 					&& keyEvent.getAction() == KeyEvent.ACTION_UP) {
 				if (GestureApp.getService() != null) {

@@ -8,7 +8,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import android.app.Instrumentation;
 import android.app.KeyguardManager;
 import android.app.KeyguardManager.KeyguardLock;
 import android.app.Service;
@@ -24,13 +23,13 @@ import android.os.PowerManager.WakeLock;
 import android.os.RemoteException;
 import android.preference.PreferenceManager;
 import android.util.Log;
-import android.view.KeyEvent;
 
 public class GestureService extends Service {
 
 	boolean registeredScreenAction;
 	KeyguardLock mKeyguardLock;
 	WakeLock mWakelock;
+	long lastRunTime = 0;
 
 	class ScreenOnOffReceiver extends BroadcastReceiver {
 		@Override
@@ -59,12 +58,18 @@ public class GestureService extends Service {
 
 		@Override
 		public void setGestureEnable(boolean enable) throws RemoteException {
-
 			setGestureDevEnable(enable);
 		}
 
 		@Override
 		public void runGesture() throws RemoteException {
+			long currTime = System.currentTimeMillis();
+			long diff = currTime - lastRunTime;
+			lastRunTime = currTime;
+			if (diff < 2000) {
+				return;
+			}
+
 			String c = readGesture();
 			String key = devGestureToPreferenceKey(c);
 			if (key != null) {
@@ -96,7 +101,8 @@ public class GestureService extends Service {
 									launchIntent
 											.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 									launchIntent.setAction(Intent.ACTION_MAIN);
-									getApplication().startActivity (launchIntent);
+									getApplication()
+											.startActivity(launchIntent);
 
 								}
 							}
@@ -104,14 +110,18 @@ public class GestureService extends Service {
 						}
 					} else if (Settings.MODE_PLAY.equals(mode)) {
 						wakeUp();
-						sendKey(KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE);
+						sendKey("MEDIA_PLAY_PAUSE");
+					} else if (Settings.MODE_NEXT.equals(mode)) {
+						wakeUp();
+						sendKey("MEDIA_NEXT");
+					} else if (Settings.MODE_PREVIOUS.equals(mode)) {
+						wakeUp();
+						sendKey("MEDIA_PREVIOUS");
 					}
-
 				}
 
 			}
 		}
-
 	}
 
 	@Override
@@ -254,23 +264,17 @@ public class GestureService extends Service {
 		}
 	}
 
-	private void sendKey(final int keycode) {
-		new Thread(){
+	private void sendKey(final String keyName) {
+		new Thread() {
 
 			@Override
 			public void run() {
-				try {
-					Thread.sleep(1000);
-				} catch (InterruptedException e) {
-					
-					e.printStackTrace();
-				}
-				Instrumentation in = new Instrumentation();
-				in.sendKeyDownUpSync(keycode);
+				Log.d("tttt", "send:" + keyName);
+				String cmd = "input keyevent " + keyName;
+				Utility.runCommand(cmd);
 			}
-			
-		}.start();
-		
-	}
 
+		}.start();
+
+	}
 }
