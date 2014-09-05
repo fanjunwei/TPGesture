@@ -18,6 +18,9 @@
     <string name="gesture_left">手势：左划</string>
     <string name="gesture_right">手势：右划</string>
 	<string name="mode">模式</string>
+	<string name="func_config">功能配置</string>
+	<string name="ok">确定</string>
+	<string name="cancel">取消</string>
     <string-array name="mode_entries">
         <item>唤醒</item>
         <item>解锁</item>
@@ -27,12 +30,12 @@
         <item>打开应用</item>
     </string-array>
     <string-array name="mode_values">
-        <item>0</item>
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-        <item>5</item>
+        <item>wakeup</item>
+        <item>unlcok</item>
+        <item>play</item>
+        <item>previous</item>
+        <item>next</item>
+        <item>run</item>
     </string-array>
 
 </resources>
