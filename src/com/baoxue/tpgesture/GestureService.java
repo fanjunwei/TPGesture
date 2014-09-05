@@ -95,7 +95,8 @@ public class GestureService extends Service {
 													com_args[0], com_args[1]));
 									launchIntent
 											.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-									startActivity(launchIntent);
+									launchIntent.setAction(Intent.ACTION_MAIN);
+									getApplication().startActivity (launchIntent);
 
 								}
 							}

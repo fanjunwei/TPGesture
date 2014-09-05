@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">触控唤醒设置</string>
+    <string name="gesture_wakeup">触控唤醒</string>
+    <string name="gestures">手势</string>
+    <string name="gesture_double_click">手势：双击</string>
+    <string name="gesture_c">手势：C</string>
+    <string name="gesture_e">手势：e</string>
+    <string name="gesture_W">手势：W</string>
+    <string name="gesture_O">手势：O</string>
+    <string name="gesture_M">手势：M</string>
+    <string name="gesture_Z">手势：Z</string>
+    <string name="gesture_V">手势：V</string>
+    <string name="gesture_S">手势：S</string>
+    <string name="gesture_up">手势：上划</string>
+    <string name="gesture_down">手势：下划</string>
+    <string name="gesture_left">手势：左划</string>
+    <string name="gesture_right">手势：右划</string>
+    <string name="mode">模式</string>
+    <string name="func_config">功能配置</string>
+    <string name="ok">确定</string>
+    <string name="cancel">取消</string>
+
+    <string-array name="mode_entries">
+        <item>唤醒</item>
+        <item>解锁</item>
+        <!--
+             <item>播放/暂停音乐</item>
+        <item>上一首</item>
+        <item>下一首</item>
+        -->
+        <item>打开应用</item>
+    </string-array>
+  
+
+</resources>
