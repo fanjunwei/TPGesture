@@ -112,14 +112,14 @@ public class Settings extends PreferenceFragment implements
 	public boolean onPreferenceClick(Preference preference) {
 		final FragmentTransaction transaction = getFragmentManager()
 				.beginTransaction();
-		ModeSettings modeSettings=new ModeSettings();
-		Bundle bundle=new Bundle();
-		bundle.putString("key", preference.getKey());
-		bundle.putString("title", preference.getTitle().toString());
-		modeSettings.setArguments(bundle);
-		transaction.replace(android.R.id.content, modeSettings);
-		transaction.addToBackStack(null);
-		transaction.commit();
+//		ModeSettings modeSettings=new ModeSettings();
+//		Bundle bundle=new Bundle();
+//		bundle.putString("key", preference.getKey());
+//		bundle.putString("title", preference.getTitle().toString());
+//		modeSettings.setArguments(bundle);
+//		transaction.replace(android.R.id.content, modeSettings);
+//		transaction.addToBackStack(null);
+//		transaction.commit();
 		return false;
 	}
 
