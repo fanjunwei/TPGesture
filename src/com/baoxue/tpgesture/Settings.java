@@ -40,7 +40,7 @@ public class Settings extends PreferenceFragment implements
 	public static final String MODE_DEFAUT = "wakeup";
 	public static final String MODE_WAKEUP = "wakeup";
 	public static final String MODE_UNLCOK = "unlcok";
-	public static final String NODE_PLAY = "play";
+	public static final String MODE_PLAY = "play";
 	public static final String MODE_PREVIOUS = "previous";
 	public static final String MODE_NEXT = "next";
 	public static final String MODE_RUN = "run";

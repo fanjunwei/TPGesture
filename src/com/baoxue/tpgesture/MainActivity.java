@@ -2,7 +2,9 @@ package com.baoxue.tpgesture;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.Instrumentation;
 import android.os.Bundle;
+import android.view.KeyEvent;
 
 public class MainActivity extends Activity {
 
@@ -15,6 +17,7 @@ public class MainActivity extends Activity {
 		actionBar.setDisplayShowHomeEnabled(false);
 		getFragmentManager().beginTransaction()
 				.replace(android.R.id.content, new Settings()).commit();
+		
 	}
 	
 //	@Override

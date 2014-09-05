@@ -8,10 +8,12 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import android.app.Instrumentation;
 import android.app.KeyguardManager;
 import android.app.KeyguardManager.KeyguardLock;
 import android.app.Service;
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -22,6 +24,7 @@ import android.os.PowerManager.WakeLock;
 import android.os.RemoteException;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.view.KeyEvent;
 
 public class GestureService extends Service {
 
@@ -69,7 +72,40 @@ public class GestureService extends Service {
 						.getDefaultSharedPreferences(GestureService.this);
 				boolean enable = preferences.getBoolean(key, false);
 				if (enable) {
-					wakeUp();
+					String args[] = preferences.getString(key + "_fun",
+							Settings.MODE_WAKEUP).split(";");
+					String mode = args[0];
+					Log.d("tttt", "run_mode=" + mode);
+					if (Settings.MODE_WAKEUP.equals(mode)) {
+						wakeUp();
+					} else if (Settings.MODE_UNLCOK.equals(mode)) {
+						wakeUp();
+						unlockScreenLocked();
+					} else if (Settings.MODE_RUN.equals(mode)) {
+						wakeUp();
+						unlockScreenLocked();
+						try {
+							if (args.length > -2) {
+								String com = args[1];
+								String com_args[] = com.split("/");
+								if (com_args.length == 2) {
+									Intent launchIntent = new Intent();
+									launchIntent
+											.setComponent(new ComponentName(
+													com_args[0], com_args[1]));
+									launchIntent
+											.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+									startActivity(launchIntent);
+
+								}
+							}
+						} catch (Throwable ex) {
+						}
+					} else if (Settings.MODE_PLAY.equals(mode)) {
+						wakeUp();
+						sendKey(KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE);
+					}
+
 				}
 
 			}
@@ -215,6 +251,25 @@ public class GestureService extends Service {
 			}
 
 		}
+	}
+
+	private void sendKey(final int keycode) {
+		new Thread(){
+
+			@Override
+			public void run() {
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					
+					e.printStackTrace();
+				}
+				Instrumentation in = new Instrumentation();
+				in.sendKeyDownUpSync(keycode);
+			}
+			
+		}.start();
+		
 	}
 
 }
