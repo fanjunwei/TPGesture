@@ -19,6 +19,18 @@
             android:key="gesture_double_click"
             android:title="@string/gesture_double_click" />
         <com.baoxue.tpgesture.HftSwitchPreference
+            android:key="gesture_up"
+            android:title="@string/gesture_up" />
+        <com.baoxue.tpgesture.HftSwitchPreference
+            android:key="gesture_down"
+            android:title="@string/gesture_down" />
+        <com.baoxue.tpgesture.HftSwitchPreference
+            android:key="gesture_left"
+            android:title="@string/gesture_left" />
+        <com.baoxue.tpgesture.HftSwitchPreference
+            android:key="gesture_right"
+            android:title="@string/gesture_right" />
+        <com.baoxue.tpgesture.HftSwitchPreference
             android:key="gesture_c"
             android:title="@string/gesture_c" />
         <com.baoxue.tpgesture.HftSwitchPreference
@@ -42,18 +54,6 @@
         <com.baoxue.tpgesture.HftSwitchPreference
             android:key="gesture_S"
             android:title="@string/gesture_S" />
-        <com.baoxue.tpgesture.HftSwitchPreference
-            android:key="gesture_up"
-            android:title="@string/gesture_up" />
-        <com.baoxue.tpgesture.HftSwitchPreference
-            android:key="gesture_down"
-            android:title="@string/gesture_down" />
-        <com.baoxue.tpgesture.HftSwitchPreference
-            android:key="gesture_left"
-            android:title="@string/gesture_left" />
-        <com.baoxue.tpgesture.HftSwitchPreference
-            android:key="gesture_right"
-            android:title="@string/gesture_right" />
     </PreferenceCategory>
 
 </PreferenceScreen>

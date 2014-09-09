@@ -131,8 +131,7 @@ public class Settings extends PreferenceFragment implements
 		gesture_right.setOnPreferenceClickListener(this);
 
 		developer = (PreferenceScreen) findPreference("developer");
-		if(!"eng".equals(Build.TYPE))
-		{
+		if (!"eng".equals(Build.TYPE)) {
 			getPreferenceScreen().removePreference(developer);
 		}
 
@@ -142,7 +141,8 @@ public class Settings extends PreferenceFragment implements
 	public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen,
 			Preference preference) {
 		if (preference == developer) {
-			FragmentTransaction transaction= getFragmentManager().beginTransaction();
+			FragmentTransaction transaction = getFragmentManager()
+					.beginTransaction();
 			transaction.replace(android.R.id.content, new DeveloperSettings());
 			transaction.addToBackStack(null);
 			transaction.commit();
