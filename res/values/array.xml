@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="mode_entries">
+        <item>Wakeup</item>
+        <item>Unlock</item>
+        <item>播放/暂停音乐</item>
+        <item>上一首</item>
+        <item>下一首</item>
+        <item>Run App</item>
+    </string-array>
+    <string-array name="mode_values">
+        <item>wakeup</item>
+        <item>unlcok</item>
+        <item>play</item>
+        <item>previous</item>
+        <item>next</item>
+        <item>run</item>
+    </string-array>
+
+</resources>

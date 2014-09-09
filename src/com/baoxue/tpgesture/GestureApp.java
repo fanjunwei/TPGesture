@@ -1,5 +1,12 @@
 package com.baoxue.tpgesture;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 import android.app.Application;
 import android.content.ComponentName;
 import android.content.Context;
@@ -51,41 +58,84 @@ public class GestureApp extends Application {
 	}
 
 	private void initDefautlPreferences() {
-		SharedPreferences preferences = PreferenceManager
-				.getDefaultSharedPreferences(thisApp);
-		if (!preferences.getBoolean("loaded_default", false)) {
-			Editor editor = preferences.edit();
-			editor.putBoolean("gesture_wakeup",
-					getResources().getBoolean(R.bool.gesture_wakeup));
-			editor.putBoolean("gesture_double_click", getResources()
-					.getBoolean(R.bool.gesture_double_click));
-			editor.putBoolean("gesture_c",
-					getResources().getBoolean(R.bool.gesture_c));
-			editor.putBoolean("gesture_e",
-					getResources().getBoolean(R.bool.gesture_e));
-			editor.putBoolean("gesture_W",
-					getResources().getBoolean(R.bool.gesture_W));
-			editor.putBoolean("gesture_O",
-					getResources().getBoolean(R.bool.gesture_O));
-			editor.putBoolean("gesture_M",
-					getResources().getBoolean(R.bool.gesture_M));
-			editor.putBoolean("gesture_Z",
-					getResources().getBoolean(R.bool.gesture_Z));
-			editor.putBoolean("gesture_V",
-					getResources().getBoolean(R.bool.gesture_V));
-			editor.putBoolean("gesture_S",
-					getResources().getBoolean(R.bool.gesture_S));
-			editor.putBoolean("gesture_up",
-					getResources().getBoolean(R.bool.gesture_up));
-			editor.putBoolean("gesture_down",
-					getResources().getBoolean(R.bool.gesture_down));
-			editor.putBoolean("gesture_left",
-					getResources().getBoolean(R.bool.gesture_left));
-			editor.putBoolean("gesture_right",
-					getResources().getBoolean(R.bool.gesture_right));
+		if (!loadConfigFromFile()) {
+			SharedPreferences preferences = PreferenceManager
+					.getDefaultSharedPreferences(thisApp);
+			if (!preferences.getBoolean("loaded_default", false)) {
+				Editor editor = preferences.edit();
+				editor.putBoolean("gesture_wakeup",
+						getResources().getBoolean(R.bool.gesture_wakeup));
+				editor.putBoolean("gesture_double_click", getResources()
+						.getBoolean(R.bool.gesture_double_click));
+				editor.putBoolean("gesture_c",
+						getResources().getBoolean(R.bool.gesture_c));
+				editor.putBoolean("gesture_e",
+						getResources().getBoolean(R.bool.gesture_e));
+				editor.putBoolean("gesture_W",
+						getResources().getBoolean(R.bool.gesture_W));
+				editor.putBoolean("gesture_O",
+						getResources().getBoolean(R.bool.gesture_O));
+				editor.putBoolean("gesture_M",
+						getResources().getBoolean(R.bool.gesture_M));
+				editor.putBoolean("gesture_Z",
+						getResources().getBoolean(R.bool.gesture_Z));
+				editor.putBoolean("gesture_V",
+						getResources().getBoolean(R.bool.gesture_V));
+				editor.putBoolean("gesture_S",
+						getResources().getBoolean(R.bool.gesture_S));
+				editor.putBoolean("gesture_up",
+						getResources().getBoolean(R.bool.gesture_up));
+				editor.putBoolean("gesture_down",
+						getResources().getBoolean(R.bool.gesture_down));
+				editor.putBoolean("gesture_left",
+						getResources().getBoolean(R.bool.gesture_left));
+				editor.putBoolean("gesture_right",
+						getResources().getBoolean(R.bool.gesture_right));
 
-			editor.putBoolean("loaded_default", true);
-			editor.commit();
+				editor.putBoolean("loaded_default", true);
+				editor.commit();
+			}
+		}
+	}
+
+	private boolean loadConfigFromFile() {
+		String path = "/system/gesture_config";
+		File file = new File(path);
+		if (!file.exists()) {
+			return false;
+		} else {
+			SharedPreferences preferences = PreferenceManager
+					.getDefaultSharedPreferences(thisApp);
+			if (!preferences.getBoolean("loaded_default", false)) {
+				Editor editor = preferences.edit();
+				try {
+					BufferedReader reader = new BufferedReader(
+							new InputStreamReader(new FileInputStream(file)));
+					String line;
+					while ((line = reader.readLine()) != null) {
+						String args[] = line.split("\\|");
+						if (args.length == 3) {
+							String key = args[0];
+							if ("1".equals(args[1])) {
+								editor.putBoolean(key, true);
+							} else {
+								editor.putBoolean(key, false);
+							}
+							editor.putString(key + "_fun", args[2]);
+						}
+					}
+					reader.close();
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+				editor.commit();
+			}
+			return true;
 		}
 	}
 

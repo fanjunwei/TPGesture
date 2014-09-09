@@ -5,4 +5,5 @@ interface IGestureService {
 	void lockScreen();
 	void setGestureEnable(boolean enable);
 	void runGesture();
+	String readLastGestureKey();
 }

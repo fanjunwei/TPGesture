@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:key="parent" >
+
+    <Preference
+        android:key="last_gesture"
+        android:title="@string/last_gesture_title" />
+    <Preference
+        android:key="save_config"
+        android:summary="@string/save_config_helper"
+        android:title="@string/save_config_title" />
+
+</PreferenceScreen>

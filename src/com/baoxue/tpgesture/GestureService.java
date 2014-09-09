@@ -17,12 +17,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.IBinder;
 import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
 import android.os.RemoteException;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.widget.Toast;
 
 public class GestureService extends Service {
 
@@ -63,13 +65,13 @@ public class GestureService extends Service {
 
 		@Override
 		public void runGesture() throws RemoteException {
-			long currTime = System.currentTimeMillis();
-			long diff = currTime - lastRunTime;
-			lastRunTime = currTime;
-			if (diff < 2000) {
-				return;
+			synchronized (this) {
+				long currTime = System.currentTimeMillis();
+				if (currTime - lastRunTime < 2000) {
+					return;
+				}
+				lastRunTime = currTime;
 			}
-
 			String c = readGesture();
 			String key = devGestureToPreferenceKey(c);
 			if (key != null) {
@@ -121,6 +123,13 @@ public class GestureService extends Service {
 				}
 
 			}
+		}
+
+		@Override
+		public String readLastGestureKey() throws RemoteException {
+			String c = readGesture();
+			return devGestureToPreferenceKey(c);
+
 		}
 	}
 

@@ -21,22 +21,8 @@
     <string name="func_config">Functional configuration</string>
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
-
-    <string-array name="mode_entries">
-        <item>Wakeup</item>
-        <item>Unlock</item>
-        <item>播放/暂停音乐</item>
-        <item>上一首</item>
-        <item>下一首</item>
-        <item>Run App</item>
-    </string-array>
-    <string-array name="mode_values">
-        <item>wakeup</item>
-        <item>unlcok</item>
-        <item>play</item>
-        <item>previous</item>
-        <item>next</item>
-        <item>run</item>
-    </string-array>
-
+	<string name="developer_title">开发选项</string>
+	<string name="last_gesture_title">上次手势,点击更新</string>
+	<string name="save_config_title">保存设置</string>
+	<string name="save_config_helper">保存设置到SD卡，内置到/system/gesture_config后就可以定制默认值</string>
 </resources>

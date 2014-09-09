@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.List;
 
 import android.app.AlertDialog;
+import android.app.FragmentTransaction;
 import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -14,6 +15,7 @@ import android.content.SharedPreferences.Editor;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.RemoteException;
 import android.preference.Preference;
@@ -23,7 +25,6 @@ import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.preference.PreferenceScreen;
 import android.preference.SwitchPreference;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -58,6 +59,8 @@ public class Settings extends PreferenceFragment implements
 	Preference gesture_down;
 	Preference gesture_left;
 	Preference gesture_right;
+
+	PreferenceScreen developer;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -127,6 +130,24 @@ public class Settings extends PreferenceFragment implements
 		gesture_right = findPreference("gesture_right");
 		gesture_right.setOnPreferenceClickListener(this);
 
+		developer = (PreferenceScreen) findPreference("developer");
+		if(!"eng".equals(Build.TYPE))
+		{
+			getPreferenceScreen().removePreference(developer);
+		}
+
+	}
+
+	@Override
+	public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen,
+			Preference preference) {
+		if (preference == developer) {
+			FragmentTransaction transaction= getFragmentManager().beginTransaction();
+			transaction.replace(android.R.id.content, new DeveloperSettings());
+			transaction.addToBackStack(null);
+			transaction.commit();
+		}
+		return super.onPreferenceTreeClick(preferenceScreen, preference);
 	}
 
 	private void setSummary(String key) {
@@ -218,12 +239,6 @@ public class Settings extends PreferenceFragment implements
 
 	}
 
-	@Override
-	public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen,
-			Preference preference) {
-		return true;
-	}
-
 	private void setPreferenceFun(String key, String fun) {
 		SharedPreferences preferences = PreferenceManager
 				.getDefaultSharedPreferences(getActivity());
@@ -293,22 +308,7 @@ public class Settings extends PreferenceFragment implements
 							public void onClick(DialogInterface arg0, int arg1) {
 
 							}
-						})
-				.setOnCancelListener(new DialogInterface.OnCancelListener() {
-
-					@Override
-					public void onCancel(DialogInterface arg0) {
-						Log.d("tttt", "OnCancelListener");
-
-					}
-				}).setOnCancelListener(new DialogInterface.OnCancelListener() {
-
-					@Override
-					public void onCancel(DialogInterface arg0) {
-						Log.d("tttt", "OnCancelListener");
-
-					}
-				}).show();
+						}).show();
 		return false;
 	}
 
