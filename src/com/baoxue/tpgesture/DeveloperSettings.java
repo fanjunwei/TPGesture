@@ -92,7 +92,7 @@ public class DeveloperSettings extends PreferenceFragment {
 	private void saveConfig() {
 		String sdpath = getSDPath();
 		if (sdpath != null) {
-			String path = sdpath + "/gesture_config";
+			String path = sdpath + "/gesture_default";
 			File file = new File(path);
 			if (file.exists()) {
 				file.delete();

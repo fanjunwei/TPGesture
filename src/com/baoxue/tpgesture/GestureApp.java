@@ -99,7 +99,7 @@ public class GestureApp extends Application {
 	}
 
 	private boolean loadConfigFromFile() {
-		String path = "/system/gesture_config";
+		String path = "/system/gesture_default";
 		File file = new File(path);
 		if (!file.exists()) {
 			return false;

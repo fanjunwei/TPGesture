@@ -24,5 +24,5 @@
 	<string name="developer_title">开发选项</string>
 	<string name="last_gesture_title">上次手势,点击更新</string>
 	<string name="save_config_title">保存设置</string>
-	<string name="save_config_helper">保存设置到SD卡，内置到/system/gesture_config后就可以定制默认值</string>
+	<string name="save_config_helper">保存设置到SD卡，内置到/system/gesture_default后就可以定制默认值</string>
 </resources>

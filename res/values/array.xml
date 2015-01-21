@@ -3,9 +3,9 @@
     <string-array name="mode_entries">
         <item>Wakeup</item>
         <item>Unlock</item>
-        <item>播放/暂停音乐</item>
-        <item>上一首</item>
-        <item>下一首</item>
+        <item>Play/Pause Music</item>
+        <item>Previous Music</item>
+        <item>Next Music</item>
         <item>Run App</item>
     </string-array>
     <string-array name="mode_values">
